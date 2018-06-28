@@ -8,10 +8,10 @@ self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(staticCacheName).then(cache => {
             return cache.addAll([
-                '/huudi001.github.io/',
-                '/huudi001.github.io/index.html',
-                '/huudi001.github.io/js/index.js',
-                '/huudi001.github.io/css/style.css',
+                '/huudi001.github.io/AL-Currency-converter',
+                '/huudi001.github.io/AL-Currency-converter/index.html',
+                '/huudi001.github.io/AL-Currency-converter/js/index.js',
+                '/huudi001.github.io/AL-Currency-converter/css/style.css',
             ]).then(() => self.skipWaiting());
         })
     );
