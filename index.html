@@ -51,7 +51,7 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
-                navigator.serviceWorker.register('AL-Currency-converter/sw.js',{scope:'/Al-Currency-converter/'}).then(function(registration) {
+                navigator.serviceWorker.register('AL-Currency-converter/sw.js',{scope:'/AL-Currency-converter/'}).then(function(registration) {
                     
                     console.log('ServiceWorker registration successful with scope: ', registration.scope);
                 }, function(err) {
