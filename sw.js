@@ -12,9 +12,6 @@ self.addEventListener('install', e => {
                 '/huudi001.github.io/index.html',
                 '/huudi001.github.io/js/index.js',
                 '/huudi001.github.io/css/style.css',
-                '/huudi001.github.io/css/responsiveform1.css',
-                '/huudi001.github.io/css/responsiveform2.css',
-                '/huudi001.github.io/css/responsiveform3.css',
                 'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css',
                 'https://fonts.googleapis.com/css?family=Roboto:400,700'
             ]).then(() => self.skipWaiting());
