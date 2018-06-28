@@ -8,10 +8,10 @@ self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(staticCacheName).then(cache => {
             return cache.addAll([
-                'AL-Currency-converter/',
-                '/AL-Currency-converter/index.html',
-                'AL-Currency-converter/js/index.js',
-                'AL-Currency-converter/css/style.css',
+                'https://huudi001.github.io/AL-Currency-converter/',
+                'https://huudi001.github.io/AL-Currency-converter/index.html',
+                'https://huudi001.github.io/AL-Currency-converter/js/index.js',
+                'https://huudi001.github.io/AL-Currency-converter/css/style.css',
             ]).then(() => self.skipWaiting());
         })
     );
