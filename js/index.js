@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const convertedCurrencyOutput = document.querySelector('input#converted_currency',);
 
 
-    // option node for select element
+    
     function createOption(currency) {
         if (currency === "undefined") {
             return 'Currency cannot be empty.';
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return optionNode;
     }
 
-    // add currency nodes to select elements
+    
     function addCurrenciesToSelect(currencies) {
         if (currencies.length === 0 || currencies === 'undefined') {
             return "Currencies cannot be empty.";
@@ -31,12 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Get amount in input field
+    
     function getInput() {
         return document.querySelector('input#amount').value;
     }
 
-    // get currencies list from api
+    
     function fetchListOfCurrencies() {
         fetch(endpoint)
             .then(response => response.json())
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             );
     }
 
-    // get conversion rates between currencies
+    
     function fetchCurrencyRate(url) {
         if (url === 'undefined') {
             return 'URL cannot be empty.';
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
             );
     }
 
-    // api url from which to get conversion rates
+    
     function buildAPIUrl(currency1, currency2) {
         if (arguments.length !== 2) {
             return 'A source and destination currencies need to be provided to build the URL.';
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return `https://free.currencyconverterapi.com/api/v5/convert?q=${currency1}_${currency2}&compact=ultra`;
     }
 
-    // use selected currencies to get exchange rate
+    
     function getExchangeRate() {
         const sourceCurrency = document.querySelector('.currency_convert_from').value;
         const destinationCurrency = document.querySelector('.currency_convert_to').value;
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fetchCurrencyRate(url);
     }
 
-    // calculate exchange rates using amount entered
+    
     function calculateExchangeRate(exchangeRate, input) {
         if (arguments.length !== 2) {
             return 'An input amount and exchange rate must be provided.';
@@ -103,12 +103,12 @@ document.addEventListener('DOMContentLoaded', () => {
         convertedCurrencyOutput.value = convertedCurrency.toFixed(2);
     }
 
-    // add event listener to the convertButton
+  
     function addEventListeners() {
         convertButton.addEventListener('click', getExchangeRate);
     }
 
-    // add functions to be called to main
+    
     function main() {
         addEventListeners();
         fetchListOfCurrencies();
