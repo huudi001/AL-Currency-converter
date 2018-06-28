@@ -5,22 +5,22 @@ class DB() {
   DbPromise() {
      if (!navigator.serviceWorker) {return Promise.reject();}
 
-    return idb.open('converter', 1, function(upgradeDb) {
+    return idb.open('converter', 1, (upgradeDb) => {
        const CurrenciesStore = upgradeDb.createObjectStore('Currencies', {
-          keyPath: 'guid'
+          keyPath: 'Uid'
     });
-    CurrenciesStore.createIndex('guid', 'guid');
+    CurrenciesStore.createIndex('Uid', 'Uid');
 
     const ExchangeRate = upgradeDb.createObjectStore('ExchangeRates', {
-        keyPath: 'guid'
+        keyPath: 'Uid'
     });
-     ExchangeRate.createIndex('guid', 'guid');
+     ExchangeRate.createIndex('Uid', 'Uid');
   });
 };
 
 
   Add(Store, data) {
-      return this. DbPromise.then( ==> (db) {
+      return this. DbPromise.then(  (db) => {
       const tx = db.transaction(Store, 'readwrite');
       const store = tx.objectStore(Store);
       store.put(data);
@@ -31,7 +31,7 @@ class DB() {
 
 Search(Store, StoreIndex, Key, Value) {
    let results = [];
-   return this.DbPromise.then ==> (db) {
+   return this.DbPromise.then (db) => {
        const tx = db.transaction(Store, 'readwrite');
         const store = tx.objectStore(Store);
 
@@ -53,16 +53,16 @@ Search(Store, StoreIndex, Key, Value) {
 
 
  Remove(Store, StoreIndex, Key, Value) {
-    return this.DbPromise.then( ==>(db) {
+    return this.DbPromise.then( (db) => {
     const tx = db.transaction(Store, 'readwrite');
     const store = tx.objectStore(Store);
     if ( !StoreIndex ) { return store.openCursor(); }
          const index = store.index(StoreIndex);
     return index.openCursor();
      })
-      .then( ==> (cursor) {
+      .then( function deleteItem(cursor){
             if (!cursor) return;
-            if ( cursor.value[searchKey] == searchValue ) {
+            if ( cursor.value[Key] == Value ) {
                cursor.delete();
         }
         return cursor.continue().then(deleteItem);
@@ -71,7 +71,7 @@ Search(Store, StoreIndex, Key, Value) {
     };
 
     Retrieve(Store, StoreIndex, check) {
-        return this.DbPromise.then( ==> (db) {
+        return this.DbPromise.then( (db) => {
         const tx = db.transaction(Store);
         const store = tx.objectStore(Store);
         if ( !check ) { return store.getAll(); }
