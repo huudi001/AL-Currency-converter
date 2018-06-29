@@ -92,22 +92,22 @@ self.addEventListener('fetch', e => {
 
 
 
-self.addEventListener('fetch', event => {
-    let requestUrl = new URL(event.request.url);
+//self.addEventListener('fetch', event => {
+    //let requestUrl = new URL(event.request.url);
 
-    if (requestUrl.origin === location.origin) {
-        if (requestUrl.pathname === '/') {
-            event.respondWith(caches.match('/index.html'));
-            return;
-        }
-    }
+    //if (requestUrl.origin === location.origin) {
+        //if (requestUrl.pathname === '/') {
+            //event.respondWith(caches.match('/index.html'));
+            //return;
+        //}
+    //}
 
-    event.respondWith(
+    //event.respondWith(
       
-        caches.match(event.request).then(res => {
-            return res || fetch(event.request)
-        })
+        //caches.match(event.request).then(res => {
+            //return res || fetch(event.request)
+        //})
 
-    );
-});
+    //);
+//});
 
