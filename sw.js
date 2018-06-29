@@ -29,8 +29,7 @@ self.addEventListener('activate', event => {
         })
     );
 });
-// when the browser fetches a url, either response with
-// the cached object or fetch the actual url
+
 self.addEventListener('fetch', e => {
     console.log('[ServiceWorker] Fetch', e.request.url);
 
