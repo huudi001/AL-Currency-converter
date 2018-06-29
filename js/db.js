@@ -1,3 +1,4 @@
+
 import idb from 'idb';
 
 if (!window.indexedDB) {
@@ -12,15 +13,15 @@ IDB.prototype._setupDB = function () {
     if (!navigator.serviceWorker) {return Promise.reject();}
 
     return idb.open('converter', 1, function(upgradeDb) {
-        const StoredCurrency = upgradeDb.createObjectStore('Currencies', {
-            keyPath: 'Uid'
+        const CurrenciesStore = upgradeDb.createObjectStore('Currencies', {
+            keyPath: 'guid'
         });
-        CurrenciesStore.createIndex('Uid', 'Uid');
+        CurrenciesStore.createIndex('guid', 'guid');
 
-        const Rate = upgradeDb.createObjectStore('Rates', {
-            keyPath: 'Uid'
+        const ExchangeRate = upgradeDb.createObjectStore('ExchangeRates', {
+            keyPath: 'guid'
         });
-        ExchangeRate.createIndex('Uid', 'Uid');
+        ExchangeRate.createIndex('guid', 'guid');
     });
 };
 
