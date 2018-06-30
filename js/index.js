@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputCurrency = document.querySelector('.currency_convert_from');
     const outputCurrency = document.querySelector('.currency_convert_to');
     const convertButton = document.querySelector('#convert_currency');
-    const originalCurrencyInput = document.querySelector('input#original_currency',);
+    const currencyTobeConverted = document.querySelector('input#currency_to_be_converted',);
     const convertedCurrencyOutput = document.querySelector('input#converted_currency',);
 
 
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const convertedCurrency = input * exchangeRate;
 
-        originalCurrencyInput.value = input;
+        currencyTobeConverted.value = input;
         convertedCurrencyOutput.value = convertedCurrency.toFixed(2);
     }
 
