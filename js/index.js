@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 calculateExchangeRate(...exchangeRate, inputAmount);
             })
             .catch(err =>
-                console.error(
+                console.log(
                     `The following error occured while getting the conversion rate. ${err}`,
                 ),
             );
