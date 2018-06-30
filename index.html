@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    
+
 </head>
 <body>
 
@@ -45,17 +45,17 @@
 
         </div>
 
-        
+
 
     </div>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
                 navigator.serviceWorker.register('sw.js',).then(function(registration) {
-                    
+
                     console.log('ServiceWorker registration successful with scope: ', registration.scope);
                 }, function(err) {
-                    
+
                     console.log('ServiceWorker registration failed: ', err);
                 });
             });
@@ -63,8 +63,8 @@
     </script>
 
     <script src="js/index.js"></script>
-    <script src="js/db.js"></script>
-    <script src="js/indexDb.js"></script>
+    <script src="js/utils/indexDb.js"></script>
+    <script src="js/utils/db.js"></script>
 
 </body>
 </html>
