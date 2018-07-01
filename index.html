@@ -27,6 +27,15 @@
 
 
     </div>
+    <script src="DB/db1.js"></script>
+       <script src="DB/db2.js"></script>
+       <script>
+             if('serviceWorker' in navigator) {
+             navigator.serviceWorker
+                      .register('serviceworker.js')
+                      .then(function() { console.log("Service Worker Registered"); });
+           }
+           </script>
 
 
 
