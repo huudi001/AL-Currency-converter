@@ -1,4 +1,4 @@
-let staticCacheName = 'converter-static-v1';
+let staticCacheName = 'static-v1';
    self.addEventListener('install', function (event) {
     event.waitUntil(caches.open(staticCacheName).then(function (cache) {
       return cache.addAll(['index.html', 'css/bootstrap.min.css', 'DB/db1.js', 'DB/db2.js']);

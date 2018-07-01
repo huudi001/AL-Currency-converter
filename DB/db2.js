@@ -1,6 +1,6 @@
-const apiURL = `https://free.currencyconverterapi.com/api/v5/currencies`;
-let countriesCurrencies;
-const dbPromise = idb.open('countries-currencies', 1, upgradeDB => {
+const endpoint = `https://free.currencyconverterapi.com/api/v5/currencies`;
+let countryOfcurrency;
+const dbPromise = idb.open('currencies', 1, upgradeDB => {
 
   switch (upgradeDB.oldVersion) {
     case 0:
@@ -8,18 +8,18 @@ const dbPromise = idb.open('countries-currencies', 1, upgradeDB => {
       upgradeDB.createObjectStore('rates', {keyPath: 'id'});
   }
 });
-fetch(apiURL)
+fetch(endpoint)
   .then( response => {
   return response.json();
 })
   .then(currencies => {
   dbPromise.then(db => {
     if(!db) return;
-    countriesCurrencies = [currencies.results];
+    countryOfcurrency = [currencies.results];
     const tx = db.transaction('objs', 'readwrite');
     const store = tx.objectStore('objs');
     let i = 0;
-    countriesCurrencies.forEach(function(currency) {
+    countryOfcurrency.forEach(function(currency) {
       for (let value in currency) {
         store.put(currency[value]);
       }
@@ -28,20 +28,20 @@ fetch(apiURL)
   });
 });
 
-//Append Currencies to Select
+
 dbPromise.then(db => {
   return db.transaction('objs')
     .objectStore('objs').getAll();
 }).then(results => {
-        results.forEach(x=> {
+        results.forEach(e=> {
             let opt = document.createElement('option');
             let opt2 = document.createElement('option');
-            opt.value = x.id;
-            opt.text = `${x.currencyName} (${x.id})`;
+            opt.value = e.id;
+            opt.text = `${e.currencyName} (${e.id})`;
 
             opt2 = opt.cloneNode(true);
-            currency_from.add(opt);
-            currency_to.add(opt2);
+            currency_converted_from.add(opt);
+            currency_converted_to.add(opt2);
 
         });
         console.log(results);
@@ -50,20 +50,20 @@ dbPromise.then(db => {
 
 
 
-//Fetch Currencies
 
-const curr = currency => {
-    let e = document.getElementById('currency_from');
-    let sel = e.options[e.selectedIndex].value;
-    let e2 = document.getElementById('currency_to');
-    let sel2 = e2.options[e2.selectedIndex].value;
+
+const generateCurrency = currency => {
+    let element = document.getElementById('currency_converted_from');
+    let selected = element.options[element.selectedIndex].value;
+    let element2= document.getElementById('currency_converted_to');
+    let selected2 = element2.options[element2.selectedIndex].value;
     let amounts = document.getElementById("currency_value").value;
-    let query = `${sel}_${sel2}`;
-    console.log(sel2);
-    console.log(sel);
-    const rateURL = `https://free.currencyconverterapi.com/api/v5/convert?q=${query}&compact=ultra`;
+    let query = `${selected}_${selected2}`;
+    console.log(selected2);
+    console.log(selected);
+    const Api = `https://free.currencyconverterapi.com/api/v5/convert?q=${query}&compact=ultra`;
     let newrates;
-fetch(rateURL)
+fetch(api)
   .then( response => {
   return response.json();
 })
@@ -73,7 +73,7 @@ fetch(rateURL)
     let rate = newrates[query];
     conversion = amounts * rate;
     console.log(conversion);
-    document.getElementById('answer').innerHTML = `Amount: ${conversion}`;
+    document.getElementById('ans').innerHTML = `Amount: ${conversion}`;
 
   dbPromise.then(db => {
     if(!db) return;
@@ -91,7 +91,7 @@ fetch(rateURL)
         let rate = results[0][query];
         conversion = amounts * rate;
         console.log(conversion);
-        document.getElementById('answer').innerHTML = `Amount: ${conversion}`;
+        document.getElementById('ans').innerHTML = `Amount: ${conversion}`;
     })
 });
     }

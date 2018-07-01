@@ -1,49 +1,46 @@
 <html>
+   <head>
+     <link rel="stylesheet" href="css/bootstrap.min.css">
+   </head>
+   <body>
+     <div class="container">
+       <h2 class="text-center alert alert-info"></h2>
+       <form action="">
+        <div class="form-group">
+          <label for="currency_value">  Enter amount you want to convert</label>
+            <input type="text" name="currency_value" id="currency_value" class="form-control" onchange="generateCurrency();">
+       </div>
+       <div class="form-group">
+         <select name="currency_converted_from" id="currency_converted_from" class="form-control">
+           <option value="" selected>Choose currency</option>
+        </select>
+      </div>
+      <div class="from-group">
+        <select name="currency_converted_to" id="currency_converted_to" class="form-control">
+          <option value="" select>convert to</option>
+        </select>
+      </div>
 
-    <head>
-<link rel="stylesheet" href="css/bootstrap.min.css">
-    </head>
-    <style>
-
-    </style>
-    <body>
-        <div class="container">
-            <h2 class="text-center alert alert-info">Currency Converter</h2>
-            <form action="">
-            <div class="form-group">
-                <label for="currency_value">Enter your currency value</label>
-                    <input type="text" name="currency_value" id="currency_value" class="form-control" onchange="curr();">
-            </div>
-            <div class="form-group">
-                <select name="curreny_from" id="currency_from" class="form-control">
-                    <option value="" selected>Select Currency</option>
-
-                </select>
-            </div>
-            <div class="form-group">
-                    <select name="curreny_to" id="currency_to" class="form-control">
-                        <option value="" selected>Convert to</option>
-
-                    </select>
-         </div>
-
-            <button type="button" class="btn btn-large btn-block btn-success"  onclick="curr();">Convert</button>
-              <h4><span id="answer"></span></h4>
-
-         </form>
-                                    
-        </div>
+        <button type="button" class="btn btn-large btn-block btn-success" onclick="generateCurrency();">click to convert</button>
+        <h3><span id="ans"></span></h3>
+    </form>
 
 
-        <script src="DB/db1.js"></script>
-        <script src="DB/db2.js"></script>
-        <script>
-              if('serviceWorker' in navigator) {
-              navigator.serviceWorker
-                       .register('serviceworker.js')
-                       .then(function() { console.log("Service Worker Registered"); });
-            }
-            </script>
-    </body>
+    </div>
+
+
+
+
+
+
+   </body>
+
+
+
+
+
+
+
+
 
 </html>
