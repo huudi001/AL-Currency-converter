@@ -1,71 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Shirwa">
+<html>
 
-    <title>Currency Converter</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <head>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+    </head>
+    <style>
 
-</head>
-<body>
+    </style>
+    <body>
+        <div class="container">
+            <h2 class="text-center alert alert-info">Currency Converter</h2>
+            <form action="">
+            <div class="form-group">
+                <label for="currency_value">Enter your currency value</label>
+                    <input type="text" name="currency_value" id="currency_value" class="form-control" onchange="curr();">
+            </div>
+            <div class="form-group">
+                <select name="curreny_from" id="currency_from" class="form-control">
+                    <option value="" selected>Select Currency</option>
 
-    <div id="container">
+                </select>
+            </div>
+            <div class="form-group">
+                    <select name="curreny_to" id="currency_to" class="form-control">
+                        <option value="" selected>Convert to</option>
 
-        <header>
-            <h1>Currency Converter </h1>
-            <p>select a currency and enter an amount</p>
-        </header>
+                    </select>
+         </div>
 
-        <div class="input_div">
+            <button type="button" class="btn btn-large btn-block btn-success"  onclick="curr();">Convert</button>
+              <h4><span id="answer"></span></h4>
 
-            <label for="amount">Enter amount:</label>
-            <input id="amount" name="currency" type="number" min="1" value="0.00"> <br>
-
-            <label for="currency_from">From:</label>
-            <select id="currency_from" class="currency_convert_from"></select>
-
-            <label for="currency_to">To:</label>
-            <select id="currency_to" class="currency_convert_to"></select>
-
-            <input id="convert_currency" type="submit" value="Convert Currency">
-
-        </div>
-
-        <div class="output_div">
-
-          <label for="converted_currency">currency to be converted</label>
-          <input type="text" name="to_be_converted" id="currency_to_be_converted" width="100px"; disabled="true"></input>
-            <label for="converted_currency">Converted Currency</label>
-            <input type="text" name="converted_currency" id="converted_currency" width="100px"; disabled="true"></input>
+         </form>
 
         </div>
 
 
+        <script src="DB/db1.js"></script>
+        <script src="DB/db2.js"></script>
+        <script>
+              if('serviceWorker' in navigator) {
+              navigator.serviceWorker
+                       .register('serviceworker.js')
+                       .then(function() { console.log("Service Worker Registered"); });
+            }
+            </script>
+    </body>
 
-    </div>
-    
-
-    <script src="public/js/index.js"></script>
-    <script src="src/js/utils/idb.js"></script>
-    <script src="public/js/utils/index.js"></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('sw.js',).then(function(registration) {
-
-                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                }, function(err) {
-
-                    console.log('ServiceWorker registration failed: ', err);
-                });
-            });
-        }
-    </script>
-
-</body>
 </html>
