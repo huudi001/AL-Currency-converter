@@ -63,7 +63,7 @@ const generateCurrency = currency => {
     console.log(selected);
     const Api = `https://free.currencyconverterapi.com/api/v5/convert?q=${query}&compact=ultra`;
     let newrates;
-fetch(api)
+fetch(Api)
   .then( response => {
   return response.json();
 })
